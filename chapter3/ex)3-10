@@ -1,0 +1,11 @@
+        private const string timerStopLabel = "Stop";
+        private const string timerStartLabel = "Start";
+
+        private TimeSpan timeSpanZero = TimeSpan.FromMilliseconds(0);
+        private TimeSpan timeSpanDelay = TimeSpan.FromMilliseconds(msDelay);
+
+        private Timer time;
+        private ThreadPoolTimer threadPoolTimer;
+
+        private bool isTimerActive = false;
+        private bool isThreadPoolTimerActive = false;
