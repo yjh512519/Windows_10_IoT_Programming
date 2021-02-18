@@ -1,0 +1,56 @@
+using System.Threading.Tasks;
+using Windows.Devices.Gpio;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
+
+namespace HelloWorldIoTCS
+{
+    public sealed partial class MainPage : Page
+    {
+        private const int gpioPinNumber = 5;
+        private const int msShineDuration = 5000;
+
+        public MainPage()
+        {
+            InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            BlinkLed(gpioPinNumber, msShineDuration);
+
+        }
+
+        private GpioPin ConfigureGpioPin(int pinNumber)
+        {
+            var gpioController = GpioController.GetDefault();
+
+            GpioPin Pin = null;
+            if (gpioController != null)
+            {
+                Pin = gpioController.OpenPin(pinNumber);
+                if (Pin != null)
+                {
+                    Pin.SetDriveMode(GpioPinDriveMode.Output);
+
+                }
+
+
+            }
+            return Pin;
+        }
+
+        private void BlinkLed(int gpioPinNumber, int msShineDuration)
+        {
+            GpioPin ledGpioPin = ConfigureGpioPin(gpioPinNumber);
+            if (ledGpioPin != null)
+            {
+                ledGpioPin.Write(GpioPinValue.Low);
+                Task.Delay(msShineDuration).Wait();
+                ledGpioPin.Write(GpioPinValue.High);
+            }
+
+        }
+    }
+}
