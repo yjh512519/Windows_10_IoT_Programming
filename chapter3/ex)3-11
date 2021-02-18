@@ -1,0 +1,82 @@
+        private void InitializeTimer()
+        {
+            if (timer != null)
+            {
+                return;
+            }
+            else
+            {
+                var timerCallback = new TimerCallback((arg) => { GetReading(); });
+
+                timer = new Timer(timerCallback, null, Timeout.InfiniteTimeSpan, timeSpanDelay);
+            }
+        }
+
+        private void UpdateButtonLabel(Button button, bool isTimerActive)
+        {
+            if (button != null)
+            {
+                var buttonLabel = button.Content as string;
+                if (buttonLabel != null)
+                {
+                    if (isTimerActive)
+                    {
+                        buttonLabel = buttonLabel.Replace(timerStartLabel, timerStopLabel);
+                    }
+                    else
+                    {
+                        buttonLabel = buttonLabel.Replace(timerStopLabel, timerStartLabel);
+                    }
+
+                    button.Content = buttonLabel;
+                }
+            }
+        }
+
+        private void UpdateTimerState()
+        {
+            if (isTimerActive)
+            {
+                // Stop Timer
+                timer.Change(Timeout.InfiniteTimeSpan, timeSpanDelay);
+            }
+            else
+            {
+                // Start Timer
+                timer.Change(timeSpanZero, timeSpanDelay);
+            }
+
+            isTimerActive = !isTimerActive;
+        }
+
+        private void StartThreadPoolTimer()
+        {
+            var timerElapsedHandler = new TimerElapsedHandler((arg) => { GetReading(); });
+
+            threadPoolTimer = ThreadPoolTimer.CreatePeriodicTimer(timerElapsedHandler, timeSpanDelay);
+        }
+
+        private void StopThreadPoolTimer()
+        {
+            if (threadPoolTimer != null)
+            {
+                threadPoolTimer.Cancel();
+            }
+        }
+
+        private void UpdateThreadPoolTimerState()
+        {
+            if (isThreadPoolTimerActive)
+            {
+                StopThreadPoolTimer();
+            }
+            else
+            {
+                StartThreadPoolTimer();
+            }
+
+            isThreadPoolTimerActive = !isThreadPoolTimerActive;
+        }
+
+    }
+}
