@@ -1,0 +1,11 @@
+private SynchronizationContext synchronizationContext;  // 추가된 코드
+ 
+        public MainPage()
+        {
+            InitializeComponent();   // 기존에 작성된 코드
+ 
+            InitializeTimer();       // 기존에 작성된 코드
+
+            synchronizationContext = SynchronizationContext.Current;  // 추가된 코드
+
+        }
