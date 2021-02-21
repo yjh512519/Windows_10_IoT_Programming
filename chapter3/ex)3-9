@@ -62,6 +62,10 @@ namespace ThreadingSample
                 randomValue.ToString(numberFormat));
 
             Debug.WriteLine(debugString);
+            
+            //ProgressBar.Value = Convert.ToInt32(randomValue * 100);
+
+            DisplayReadingValue(randomValue * 100);            
         }
 
         private void TaskButton_Click(object sender, RoutedEventArgs e)
