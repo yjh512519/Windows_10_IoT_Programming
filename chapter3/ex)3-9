@@ -32,6 +32,9 @@ namespace ThreadingSample
         public MainPage()
         {
             InitializeComponent();
+            
+            InitializeTimer();
+
         }
 
         private void GetReading()
