@@ -69,11 +69,15 @@ namespace ThreadingSample
   
         private void TimerButton_Click(object sender, RoutedEventArgs e)
         {
-           
+            UpdateTimerState();
+
+            UpdateButtonLabel(sender as Button, isTimerActive);           
         }
         private void ThreadPoolTimerButton_Click(object sender, RoutedEventArgs e)
         {
-        
+            UpdateThreadPoolTimerState();
+
+            UpdateButtonLabel(sender as Button, isThreadPoolTimerActive);
         }
         
          private void InitializeTimer()
