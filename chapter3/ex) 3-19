@@ -1,0 +1,9 @@
+ private void DisplayReadingValueUsingSynchronizationContext(double value)
+        {
+            var sendOrPostCallback = new SendOrPostCallback((arg) =>
+            {
+                ProgressBar.Value = Convert.ToInt32(arg);
+            });
+            synchronizationContext.Post(sendOrPostCallback, value);
+        
+        }
