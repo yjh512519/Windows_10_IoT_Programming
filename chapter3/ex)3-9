@@ -16,6 +16,18 @@ namespace ThreadingSample
         private const string debugInfoPrefix = "Random value";
         private const string numberFormat = "F2";
         private const string timeFormat = "HH:mm:fff";
+        
+        private const string timerStopLabel = "Stop";
+        private const string timerStartLabel = "Start";
+
+        private TimeSpan timeSpanZero = TimeSpan.FromMilliseconds(0);
+        private TimeSpan timeSpanDelay = TimeSpan.FromMilliseconds(msDelay);
+
+        private Timer timer;
+        private ThreadPoolTimer threadPoolTimer;
+
+        private bool isTimerActive = false;
+        private bool isThreadPoolTimerActive = false;
 
         public MainPage()
         {
