@@ -1,0 +1,17 @@
+private void GetReading()
+        {
+            Task.Delay(msDelay).Wait();
+            var randomValue = randomNumberGenerator.NextDouble();
+
+            string debugString = string.Format("{0} | {1} : {2}",
+                DateTime.Now.ToString(timeFormat),
+                debugInfoPrefix,
+                randomValue.ToString(numberFormat));
+
+            Debug.WriteLine(debugString);
+----------------------추가되는 부분 --------------------------------
+            //ProgressBar.Value = Convert.ToInt32(randomValue * 100);
+
+            DisplayReadingValue(randomValue * 100);
+--------------------------------------------------------------------            
+        }
