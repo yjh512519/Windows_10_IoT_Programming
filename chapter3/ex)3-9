@@ -29,11 +29,15 @@ namespace ThreadingSample
         private bool isTimerActive = false;
         private bool isThreadPoolTimerActive = false;
 
+        private SynchronizationContext synchronizationContext;
+ 
         public MainPage()
         {
             InitializeComponent();
-            
+
             InitializeTimer();
+
+            synchronizationContext = SynchronizationContext.Current;
 
         }
         
