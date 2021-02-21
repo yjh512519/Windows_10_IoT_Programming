@@ -36,6 +36,20 @@ namespace ThreadingSample
             InitializeTimer();
 
         }
+        
+        private async void DisplayReadingValue(double value)
+        {
+            if(Dispatcher.HasThreadAccess)
+            {
+                ProgressBar.Value = Convert.ToInt32(value);
+            }
+            else
+            {
+                var dispatchedHandler = new DispatchedHandler(() => { DisplayReadingValue(value); });
+
+                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, dispatchedHandler);
+            }
+        }
 
         private void GetReading()
         {
