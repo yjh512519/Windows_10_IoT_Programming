@@ -1,0 +1,27 @@
+// <Page.Resources>
+//        <Style TargetType="Button">
+//            <Setter Property="Margin"
+//                    Value="10" />
+//            <Setter Property="HorizontalAlignment"
+//                    Value="Center" />
+//       </Style>
+
+//        <Style TargetType="StackPanel">
+//            <Setter Property="HorizontalAlignment"
+//                    Value="Center" />
+//            <Setter Property="VerticalAlignment"
+//                    Value="Top" />
+//            <Setter Property="Orientation"
+//                    Value="Vertical" />
+//        </Style>
+// --------- 추가되는 부분 ----------------
+        <Style TargetType="ProgressBar">
+            <Setter Property="Height"
+                    Value="20" />
+            <Setter Property="Margin"
+                    Value="5" />
+            <Setter Property="Foreground"
+                    Value="Orange" />
+        </Style>
+// ----------------------------------------        
+// </Page.Resources>
