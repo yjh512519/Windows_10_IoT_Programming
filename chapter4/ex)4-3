@@ -1,0 +1,9 @@
+    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Button x:Name="DefaultButton"
+                Content="Change visual state"
+                HorizontalAlignment="Left"
+                Margin="10,10,0,0"
+                VerticalAlignment="Top"/>
+
+        <local:MyButton />
+    </StackPanel>
