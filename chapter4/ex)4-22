@@ -1,0 +1,14 @@
+ public sealed partial class MainPage : Page
+    {
+        private Style coloredButtonStyle = new Style(typeof(Button));
+        private const string pointerOverVisualStateName = "PointerOver";      //추가된 부분
+        private const string normalVisualStateName = "Normal";                //추가된 부분
+
+        public MainPage()
+        {
+            this.InitializeComponent();
+            
+            SetStylePropertySetters();
+
+            GoToStateButton.Style = coloredButtonStyle;                       //수정된 부분
+        }
