@@ -1,0 +1,9 @@
+//        <local:MyButton />
+        
+//        <Button Content="Internet of Things" />
+
+        <Button Content="Windows 10 IoT Core"    // 추가되는 코드
+                FontSize="12"
+                Width="190" />
+
+//    </StackPanel>
