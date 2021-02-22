@@ -1,0 +1,5 @@
+        <Button>
+            <Button.FontSize>22</Button.FontSize>
+            <Button.Foreground>White</Button.Foreground>
+            <Button.Content>Internet of Things</Button.Content>
+        </Button>
