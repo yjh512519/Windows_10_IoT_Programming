@@ -1,0 +1,18 @@
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+
+
+
+namespace HeadedAppDesign
+{
+    public sealed partial class MainPage : Page
+    {
+        private Style coloredButtonStyle = new Style(typeof(Button));
+
+        public MainPage()
+        {
+            InitializeComponent();
+            DefaultButton.Style = coloredButtonStyle;
+        }
+    }
+}
