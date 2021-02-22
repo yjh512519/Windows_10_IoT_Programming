@@ -1,0 +1,7 @@
+ public App()
+        {
+            InitializeComponent();
+            Suspending += OnSuspending;
+
+            RequestedTheme = ApplicationTheme.Light;   //추가된 부분
+        }
