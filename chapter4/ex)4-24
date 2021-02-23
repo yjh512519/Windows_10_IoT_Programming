@@ -1,4 +1,7 @@
-            <Style x:Key="EllipsisButtonStyle"
+  <Page.Resources>
+        <ResourceDictionary>
+        
+            <Style x:Key="EllipsisButtonStyle"                       // 코드추가, 정의되는 부분
                    TargetType="Button"
                    BasedOn="{StaticResource ColoredButtonStyle}">
                 <Setter Property="Template">
@@ -14,3 +17,36 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+
+
+
+        </ResourceDictionary>
+
+
+
+    </Page.Resources>
+    
+        <StackPanel Background="{ThemeResource BackButtonPressedForegroundThemeBrush}">
+        
+        <Button x:Name="GoToStateButton"
+                Content="Change visual state"
+                HorizontalAlignment="Left"
+                Margin="10,10,0,0"
+                VerticalAlignment="Top"
+                Click="GoToStateButton_Click"/>
+        
+
+        <local:MyButton />
+
+
+        <Button x:Name="IoTButton"
+                Content="Internet of Things"
+                Style="{StaticResource ColoredButtonStyle}" />
+
+        <Button x:Name="Windows10IoTCoreButton"
+                Content="Windows 10 IoT Core"
+                FontSize="12"
+                Width="190"
+                Style ="{StaticResource EllipsisButtonStyle}" />  // 수정하는 부분
+        
+    </StackPanel>
