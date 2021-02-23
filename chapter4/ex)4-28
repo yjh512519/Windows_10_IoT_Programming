@@ -1,0 +1,47 @@
+<Application
+    x:Class="HeadedAppDesign.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HeadedAppDesign"
+    RequestedTheme="Light">
+
+    <Application.Resources>       //예제 4-28 코드
+        <ResourceDictionary>      //예제 4-28 코드
+----------------------------------------------------예제 4-25        
+            <VisualState x:Name="LayoutChanged">
+                <VisualState.Setters>
+                    <Setter Target="RootGrid.RenderTransform">
+                        <Setter.Value>
+                            <ScaleTransform ScaleX="1.15"
+                                            ScaleY="1.15"/>
+                        </Setter.Value>
+                    </Setter>
+                </VisualState.Setters>
+
+                <VisualState.StateTriggers>
+                    <AdaptiveTrigger MinWindowHeight="350" />
+                </VisualState.StateTriggers>
+
+            </VisualState>
+----------------------------------------------------------------            
+---------------------------------------------------------예제 4-24            
+            <Style x:Key="EllipsisButtonStyle"                       
+                   TargetType="Button"
+                   BasedOn="{StaticResource ColoredButtonStyle}">
+              <Setter Property="Template">
+                 <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Margin="10">
+                            <Ellipse Fill="{TemplateBinding Background}"
+                                         Margin="-10"/>
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                        </Grid>
+                    </ControlTemplate>
+                 </Setter.Value>
+              </Setter>
+            </Style>
+-------------------------------------------------------------------            
+        </ResourceDictionary>     //예제 4-28 코드
+    </Application.Resources>      //예제 4-28 코드
+</Application>
