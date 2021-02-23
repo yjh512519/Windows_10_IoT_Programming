@@ -1,0 +1,27 @@
+<StackPanel Background="{ThemeResource BackButtonPressedForegroundThemeBrush}">
+        <VisualStateManager.VisualStateGroups>                              // 코드 추가되는 부분
+            <VisualStateGroup>
+                <VisualState x:Name="Translated">
+                    <VisualState.Setters>
+                        <Setter Target="GoToStateButton.RenderTransform">
+                            <Setter.Value>
+                                <TranslateTransform X="100" />
+                            </Setter.Value>
+                        </Setter>
+                    </VisualState.Setters>
+
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{Binding IsChecked, ElementName=StateTriggerCheckBox}"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
+        
+        // 예제 4-21과 동일 
+
+        <CheckBox x:Name="StateTriggerCheckBox"           // 코드 추가되는 부분
+                  Content="Is state trigger active?"
+                  Margin="10"/>
+
+    </StackPanel>
