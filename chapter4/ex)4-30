@@ -1,0 +1,53 @@
+<Application
+    x:Class="HeadedAppDesign.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HeadedAppDesign">                        //예제 4-30 코드
+
+    <Application.Resources>
+        <ResourceDictionary>
+            
+----------------------------------예제 4-27과 동일 ---------------------            
+            <Rectangle>
+                <Rectangle.Resources>
+                    <x:Double x:Key="RectWidth">100</x:Double>
+                    <x:Double x:Key="RectHeight">100</x:Double>
+                </Rectangle.Resources>
+                <Rectangle.Style>
+                    <Style TargetType="Rectangle">
+                        <Setter Property="Fill"
+                           Value="Orange" />
+                        <Setter Property="Width"
+                           Value="{StaticResource RectWidth}" />
+                        <Setter Property="Height"
+                           Value="{StaticResource RectHeight}" />
+                    </Style>
+                </Rectangle.Style>
+            </Rectangle>
+-----------------------------------------------------------------------
+-----------------------------------------------------예제4-30---------- 
+            <!--<Style x:Key="EllipsisButtonStyle"
+                       TargetType="button"
+                       BasedOn="{StaticResource ColoredButtonStyle}">
+                <Setter Property="Template">
+                   <Setter.Value>
+                      <ControlTemplate TargetType="Button">
+                        <Grid Margin="10">
+                          <Ellipse Fill="{TemplateBinding Background}"
+                                   Margin="-10" />
+                          <ContentPreesenter HorizontalAlignment="Center"
+                                             VerticalAlignment="Center" />
+                        </Grid>
+                      </ControlTemplate>
+                    </Setter>
+                 </Style>-->
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="MyDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+------------------------------------------------------------------------            
+            
+        </ResourceDictionary>
+    </Application.Resources>
+
+</Application>
