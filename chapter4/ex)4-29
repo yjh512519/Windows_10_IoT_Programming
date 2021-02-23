@@ -1,0 +1,26 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HeadedAppDesign">
+
+    <Thickness x:Key="DefaultMargin">10</Thickness>
+    <Thickness x:Key="NegativeMargin">-10</Thickness>
+
+    <Style x:Key="EllipsisButtonStyle"
+           TargetType="Button"
+           BasedOn="{StaticResource ColoredButtonStyle}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid Margin="{StaticResource DefaultMargin}">
+                        <Ellipse Fill="{TemplateBinding Background}"
+                                 Margin="{StaticResource NegativeMargin}" />
+                        <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center" />
+                    </Grid>
+                </ControlTemplate>
+                                 
+            </Setter.Value>
+        </Setter>
+    </Style>         
+</ResourceDictionary>
