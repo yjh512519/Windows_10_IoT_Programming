@@ -1,0 +1,10 @@
+private void BitwiseOperators()
+{
+    byte a = 0;  // Binary: 0000
+    byte b = 5;  // Binary: 0101
+    byte c = 10;  // Binary: 1010
+    
+    C |= a; // c = 10 (Binary: 1010)
+    C ^= b; // c = 15 (Binary: 1111)
+    C &= b; // c = 5  (Binary: 0101)
+}
