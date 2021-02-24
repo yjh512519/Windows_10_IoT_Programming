@@ -1,0 +1,12 @@
+private void BitShiftOperators()
+{
+    byte a = 0;  // Binary: 0000 0000
+    byte b = 4;  // Binary: 0000 0100
+    byte c = 8;  // Binary: 0000 1000
+    
+    int bitshiftResult;
+    
+    bitShiftResut = a << 1; // bitShiftResult = 0 (Binary: 0000 0000)
+    bitShiftResut = b >> 1; // bitShiftResult = 2 (Binary: 0000 0010)
+    bitShiftResut = c << 2; // bitShiftResult = 32 (Binary: 0010 0000)
+}
