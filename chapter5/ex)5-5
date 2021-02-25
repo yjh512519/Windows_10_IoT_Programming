@@ -1,0 +1,8 @@
+        private string IsBitSet(short value, int position)
+        {
+            return (value & (1 << position)) > 0 ? "1" : "0";
+        }
+        
+        
+        // ShortToBinaryConverter.cs 파일 맨 마지막에 추가 작성한다.
+        // pubic object ConvertBack 다음으로 만들기
