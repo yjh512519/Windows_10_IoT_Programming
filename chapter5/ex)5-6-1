@@ -1,0 +1,3 @@
+// MainPage.xaml    TextBlock 정의 아래처럼 변경
+
+   <TextBlock Text="Binary representation (LSB):" />
