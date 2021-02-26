@@ -1,0 +1,40 @@
+// 예제 5-4 <StackPanel Background 밑에 코드 수정 : MainPage.xaml
+
+
+    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <!--첫 번째 행-->
+            <TextBlock Text="Enter a value:" />
+            <TextBox Text="{x:Bind InputValue, Mode=TwoWay}"
+                     Grid.Column="1" />
+            
+            <!--두 번째 행-->
+            <TextBlock Text="Bit to set:"
+                       Grid.Row="1" />
+            <TextBox Text="{x:Bind BitToSet, Mode=TwoWay}"
+                     Grid.Row="1"
+                     Grid.Column="1" />
+            
+            <!--세 번째 행-->
+            <TextBlock Text="Bit to clear:"
+                       Grid.Row="2" />
+            <TextBox Text="{x:Bind BitToClear, Mode=TwoWay}"
+                     Grid.Row="2"
+                     Grid.Column="1" />
+        </Grid>
+
+        <!--<TextBlock Text="Binary representation (MSB):" /> -->
+        <TextBlock Text="Binary representation (LSB):" />
+        <TextBlock Text="{x:Bind OutputValue, Converter={StaticResource ShortToBinaryConverter}, Mode=OneWay}" />
+    </StackPanel>
