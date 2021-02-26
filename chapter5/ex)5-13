@@ -1,0 +1,9 @@
+const int offset = 8;
+var data = new byte[] { 65, 127, 1, 13 };
+int lastElementIndex = data.Length - 1;
+var result = data[lastElementIndex];
+
+for (int i = 0; i < data.Length; i++)
+{
+    result |= (uint)(data[i] << (lastElementIndex - i) * offset);
+}
