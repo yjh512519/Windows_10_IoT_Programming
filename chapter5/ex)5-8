@@ -1,0 +1,7 @@
+// ShortToBinaryConverter.cs 파일에 코드 추가하기 -> 예제 5-7 코드 밑으로!
+
+
+        private static int ClearBit(int value, int position)
+        {
+            return value & ~(1 << position);
+        }
