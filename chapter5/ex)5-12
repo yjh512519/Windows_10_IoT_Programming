@@ -1,0 +1,8 @@
+const int offset = 8;
+var data = new byte[] { 65, 127, 1, 13 };
+uint result = data[0];
+
+for(int i = 1; i < data.Length; i++)
+{
+    result |= (uint)(data[i] << i * offset);
+}
