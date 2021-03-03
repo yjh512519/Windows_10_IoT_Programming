@@ -1,0 +1,22 @@
+        private void Serialize()
+        {
+            int index;
+            var widthStep = Length * ColorChannelCount;
+
+            Array.Clear(pixelByteBuffer, 0, pixelByteBuffer.Length);
+
+            for (int x = 0; x < Length; x++)
+            {
+                for (int y = 0; y < Length; y++)
+                {
+                    var colorByteArray = ColorToByteArray(Buffer[x, y]);
+
+                    for (int i = 0; i < ColorChannelCount; i++)
+                    {
+                        index = x + i * Length + y * widthStep + 1;
+
+                        pixelByteBuffer[index] = colorByteArray[i];
+                    }
+                }
+            }
+        }
