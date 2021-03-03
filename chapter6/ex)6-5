@@ -1,0 +1,36 @@
+using SenseHat.Helpers;
+using System;
+using Windows.Devices.I2c;
+using Windows.UI.Xaml;
+
+namespace SenseHatIO.SenseHatJoystick
+{
+    public class Joystick
+    {
+        private const int msUpdateInterval = 12;
+        
+        private I2cDevice device;
+        
+        private DispatcherTimer joystickTimer;
+
+        public Joystick(I2cDevice device)
+        {
+            Check.IsNull(device);
+
+            this.device = device;
+
+            ConfigureTimer();
+        }
+        
+        private void ConfigureTimer()
+        {
+            joystickTimer = new DispatcherTimer();
+
+            joystickTimer.Interval = TimeSpan.FromMilliseconds(msUpdateInterval);
+            joystickTimer.Tick += JoystickTimer_Tick;
+
+            joystickTimer.Start();
+        }
+
+        //JoystickTimer_Tick 이벤트 핸들러는 예제 6-6에서 표시.
+}
