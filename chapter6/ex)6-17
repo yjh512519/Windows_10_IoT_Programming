@@ -1,0 +1,42 @@
+using SenseHatIO.SenseHatLedArray;
+
+namespace SenseHatIO
+{
+    public sealed partial class MainPage : Page, INotifyPropertyChanged
+    {
+        private Joystick joystick;
+        private LedArray ledArray;
+        
+        // 이 부분은 예제 6-20과 동일
+        
+        private async Task Initialize()
+        {
+            const byte address = 0x46;
+            var device = await I2cHelper.GetI2cDevice(address);
+
+            if (device != null)
+            {
+                joystick = new Joystick(device);
+                joystick.ButtonPressed += Joystick_ButtonPressed;
+
+                ledArray = new LedArray(device);
+                BeginRgbTest();
+            }
+        }
+        
+        private void Joystick_ButtonPressed(object sender, JoystickEventArgs e)
+        {
+            SenseHatJoystickControl.UpdateView(e.Button, e.State);
+        }
+        
+        private void BeginRgbTest()
+        {
+            const int msDelayTime = 1000;
+
+            while (true)
+            {
+                ledArray.RgbTest(msDelayTime);
+            }
+        }
+    }
+}
