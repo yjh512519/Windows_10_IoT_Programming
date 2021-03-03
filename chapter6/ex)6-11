@@ -1,0 +1,32 @@
+using SenseHat.Helpers;
+using System;
+using System.Threading.Tasks;
+using Windows.Devices.I2c;
+using Windows.UI;
+
+namespace SenseHatIO.SenseHatLedArray
+{
+    public class LedArray
+    {
+        public static byte Length { get; private set; } = 8;
+
+        public static byte ColorChannelCount { get; private set; } = 3;
+
+        public Color[,] Buffer { get; private set; }
+
+        private I2cDevice device;
+        
+        private byte[] pixelByteBuffer;
+        private byte[] color5BitLut;
+        
+        public LedArray(I2cDevice device)
+        {
+            Check.IsNull(device);
+
+            this.device = device;
+
+            Buffer = new Color[Length, Length];
+            pixelByteBuffer = new byte[Length * Length * ColorChannelCount + 1];
+
+            GenerateColorLut();
+        }
