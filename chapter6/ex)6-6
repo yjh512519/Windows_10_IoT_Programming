@@ -1,0 +1,35 @@
+using SenseHat.Helpers;
+using System;
+using Windows.Devices.I2c;
+using Windows.UI.Xaml;
+
+namespace SenseHatIO.SenseHatJoystick
+{
+    public class Joystick
+    {
+        public event EventHandler<JoystickEventArgs> ButtonPressed = delegate { };
+
+        private JoystickButton previousButton = JoystickButton.None;
+        private JoystickButtonState previousButtonState = JoystickButtonState.None;
+       
+     private void JoystickTimer_Tick(object sender, object e)
+     {
+        var rawInput = RegisterHelper.ReadByte(device, commandId);
+
+        var buttonInfo = GetButtonInfo(rawInput);
+
+        ButtonPressed(this, buttonInfo);
+     }
+     
+     private JoystickEventArgs GetButtonInfo(byte rawInput)
+     {
+         var currentJoystickButton = JoystickHelper.GetJoystickButton(rawInput);
+         var currentJoystickButtonState = JoystickHelper.GetJoystickButtonState(currentJoystickButton,
+             previousButton, previousButtonState);
+
+        // 버튼 값과 상태 저장
+         previousButton = currentJoystickButton;
+         previousButtonState = currentJoystickButtonState;
+
+         return new JoystickEventArgs(currentJoystickButton, currentJoystickButtonState);
+     }
