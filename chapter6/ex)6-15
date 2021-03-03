@@ -1,0 +1,25 @@
+        public void SetPixel(int x, int y, Color color)
+        {
+            CheckPixelLocation(x);
+            CheckPixelLocation(y);
+
+            ResetBuffer(Colors.Black);
+            Buffer[x, y] = color;
+
+            UpdateDevice();
+        }
+        
+        private void UpdateDevice()
+        {
+            Serialize();
+
+            device.Write(pixelByteBuffer);
+        }
+        
+        private void CheckPixelLocation(int location)
+        {
+            if (location < 0 || location >= Length)
+            {
+                throw new ArgumentException("LED square array has maximum length of: " + Length);
+            }
+        }
