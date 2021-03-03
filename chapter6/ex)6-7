@@ -1,0 +1,33 @@
+using SenseHatIO.SenseHatJoystick;
+using System.Collections.Generic;
+using Windows.UI;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Shapes;
+
+namespace SenseHatIO.Controls
+{
+    public sealed partial class JoystickControl : UserControl
+    {
+       private SolidColorBrush inactiveColorBrush = new SolidColorBrush(Colors.LightGray);
+       private SolidColorBrush activeColorBrush = new SolidColorBrush(Colors.GreenYellow);
+
+       public void UpdateView(JoystickButton button, JoystickButtonState buttonState)
+       {
+            ClearAll();
+
+            if (button != JoystickButton.None)
+            {
+                var colorBrush = inactiveColorBrush;
+
+                switch (buttonState)
+                {
+                    case JoystickButtonState.Pressed:
+                    case JoystickButtonState.Holding:
+                        colorBrush = activeColorBrush;
+                        break;
+                }
+
+                buttonPads[button].Fill = colorBrush;
+            }
+       }
