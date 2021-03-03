@@ -1,0 +1,28 @@
+using SenseHat.Helpers;
+using System;
+using System.Threading.Tasks;
+using Windows.Devices.I2c;
+using Windows.UI;
+
+namespace SenseHatIO.SenseHatLedArray
+{
+    public class LedArray
+    {
+        private byte[] color5BitLut;
+        
+        private void GenerateColorLut()
+        {
+            const float maxValue5Bit = 31.0f; // 2^5 - 1
+
+            int colorLutLength = byte.MaxValue + 1; // 256 discrete levels
+            color5BitLut = new byte[colorLutLength];
+
+            for (int i = 0; i < colorLutLength; i++)
+            {
+                var value5bit = Math.Ceiling(i * maxValue5Bit / byte.MaxValue);
+
+                value5bit = Math.Min(value5bit, maxValue5Bit);
+
+                color5BitLut[i] = Convert.ToByte(value5bit);
+            }
+        }
