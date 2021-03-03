@@ -1,0 +1,31 @@
+public static JoystickButtonState GetJoystickButtonState(JoystickButton currentButton, joystickButton previousButton, JoystickButton previousButton, JoystickButtonState previousButtonState = JoystickButtonState.None)
+{
+    var buttonSate = previousButtonState;
+    
+    if (currentButton != previousButton)]
+    {
+      switch (previousButtonState)
+      {
+          case JoystickButtonState.None:
+              buttonState = JoystickButtonState.Pressed;
+              break;
+              
+          case JoystickButtonState.Holding:
+              buttonState = JoystickButtonState.Released;
+              break;
+      }
+   }
+   else
+   {
+      if (currentButton == JoystickButton.None)
+      {
+          buttonState = JoystickButtonState.None;
+      }
+      else
+      {
+          buttonState = JoystickButtonState.Holding;
+      }
+   }
+   
+   return buttonState;
+}
