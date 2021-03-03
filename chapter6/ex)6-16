@@ -1,0 +1,22 @@
+        public void RgbTest(int msSleepTime)
+        {
+            Color[] colors = new Color[] { Colors.Red, Colors.Green, Colors.Blue };
+
+            foreach (var color in colors)
+            {
+                Reset(color);
+                Task.Delay(msSleepTime).Wait();
+            }
+        }
+        
+        private void ResetBuffer(Color color)
+        {
+            for (int x = 0; x < Length; x++)
+            {
+                for (int y = 0; y < Length; y++)
+                {
+                    Buffer[x, y] = color;
+                }
+            }
+        }
+        
