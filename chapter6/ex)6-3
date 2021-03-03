@@ -1,0 +1,24 @@
+public static JoystickButton GetJoystickButton(byte buttonInput)
+{
+    var bitArray = new BitArray(new BitaArray(new byte[] { buttonInput });
+    
+    var joystickButton = JoystickButton.None;
+    
+    for (int i = 0; i < bitArray.Length; i++)
+    {
+        if (bitArray[i])
+        {
+            var numValue = Convert.ToByte(Math.Pow(2, i));
+            
+            if (Enum.IsDefined(typeof(JoystickButton), numValue))
+            {
+                joystickButton = (JoystickButton)numValue;
+            }
+            
+            break;
+            
+        }
+    }
+    
+    return joystickButton;
+}
