@@ -1,0 +1,47 @@
+using SenseHat.Helpers;
+using SenseHatIO.SenseHatJoystick;
+using SenseHatIO.SenseHatLedArray;
+using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using Windows.UI;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
+
+namespace SenseHatIO
+{
+    public sealed partial class MainPage : Page
+    {
+        public MainPage()
+        {
+            InitializeComponent();
+        }
+        
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            await Initialize();
+        }
+        
+        private async Task Initialize()
+        {
+            const byte address = 0x46;
+            var device = await I2cHelper.GetI2cDevice(address);
+
+            if (device != null)
+            {
+                joystick = new Joystick(device);
+                joystick.ButtonPressed += Joystick_ButtonPressed;
+            }
+        }
+        
+        private void Joystick_ButtonPressed(object sender, JoystickEventArgs e)
+        {
+            SenseHatJoystickControl.UpdateView(e.Button, e.State);
+        }
+     }
