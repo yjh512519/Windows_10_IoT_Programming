@@ -1,0 +1,22 @@
+using SenseHat.Helpers;
+using System;
+using System.Threading.Tasks;
+using Windows.Devices.I2c;
+using Windows.UI;
+
+namespace SenseHatIO.SenseHatLedArray
+{
+    public class LedArray
+    {
+    
+        private byte[] ColorToByteArray(Color color)
+        {
+            return new byte[]
+            {
+                color5BitLut[color.R],
+                color5BitLut[color.G],
+                color5BitLut[color.B]
+            };
+        }
+    }
+}
