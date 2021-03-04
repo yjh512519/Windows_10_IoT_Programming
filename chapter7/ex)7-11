@@ -1,0 +1,49 @@
+using SenseHatDisplay.Helpers;
+using SenseHatIO.SenseHatLedArray;
+using Speech;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Windows.Media.SpeechRecognition;
+using Windows.UI;
+using Windows.UI.Xaml.Controls;
+
+namespace SpeechControl
+{
+    public sealed partial class MainPage : Page
+    {
+          private const string recognitionError = "I did not get that";
+          private const string confirmationMessage = "OK";
+          
+          private void ContinuousRecognitionSession_ResultGenerated(
+            SpeechContinuousRecognitionSession sender,
+            SpeechContinuousRecognitionResultGeneratedEventArgs args)
+          {
+            string message = recognitionError;
+
+            if (args.Result.Confidence != SpeechRecognitionConfidence.Rejected)
+            {
+                message = SetColor(args);
+            }
+
+            SpeechHelper.Speak(message);
+          }
+          
+          private string SetColor(SpeechContinuousRecognitionResultGeneratedEventArgs args)
+          {
+            var message = recognitionError;
+
+            var recognizedText = args.Result.Text;
+
+            if (commandsDictionary.ContainsKey(recognizedText))
+            {
+                var color = commandsDictionary[recognizedText];
+
+                message = confirmationMessage;
+
+                ledArray.Reset(color);
+            }
+
+            return message;
+          }
+
