@@ -1,0 +1,47 @@
+using System;
+using Windows.Media.SpeechSynthesis;
+using Windows.UI.Core;
+using Windows.UI.Xaml.Controls;
+
+namespace Speech
+{
+    public class SpeechHelper
+    {
+        private static SpeechSynthesizer speechSynthesizer;
+        private static MediaElement mediaElement;
+
+        static SpeechHelper()
+        {
+            speechSynthesizer = new SpeechSynthesizer();
+            mediaElement = new MediaElement();
+        }
+
+        public static async void Speak(string textToSpeech, VoiceInformation voice = null)
+        {
+            if (!string.IsNullOrEmpty(textToSpeech))
+            {
+                ConfigureVoice(voice);
+
+                var speechStream = await speechSynthesizer.SynthesizeTextToStreamAsync(textToSpeech);
+                
+                await mediaElement.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    mediaElement.SetSource(speechStream, speechStream.ContentType);
+                    mediaElement.Play();
+                });
+            }
+        }
+        
+        private static void ConfigureVoice(VoiceInformation voice)
+        {
+            if (voice != null)
+            {
+                speechSynthesizer.Voice = voice;
+            }
+            else
+            {
+                speechSynthesizer.Voice = SpeechSynthesizer.DefaultVoice;
+            }
+        }
+    }
+}
