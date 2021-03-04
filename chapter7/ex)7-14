@@ -1,0 +1,39 @@
+public static class SpectrumHelper
+{
+    public static double[] FourierMagnitude(short[] inputData)
+    {
+        Check.IsNull(inputData);
+        
+        var complexInput = ShortToComplexArray(inputData);
+        
+        Fourier.Forward(complexInput);
+        
+        return GetMagnitude(complexInput);
+    }
+    
+    private static Complex[] ShortToComplexArray(short[] inputData)
+    {
+        int elementsCount = inputData.Length;
+        
+        
+        var complexData = new Complex[elementsCount];
+        
+        for (int i = 0; i < elementsCount; i++)
+        {
+            complexData[i] = new Complex(inputData[i], 0.0d);
+        }
+        
+        return complexData;
+    }
+    
+    private static double[] GetMagnitude(Complex[] fft)
+    {
+        var magnitude = new double[fft.Length];
+        
+        for (int i = 0; i < magnitude.Length; i++)
+        {
+            magnitude[i] = fft[i].Magnitude;
+        }
+        return magnitude;
+    }
+}
