@@ -1,0 +1,27 @@
+public static void AddLineSeries<T>(PlotModel plotModel, T[] inputData, OxyColor color)
+{
+    check.IsNull(plotModel);
+    check.IsNull(inputData);
+    
+    var lineSeries = new LineSeries()
+    {
+        Color = color
+    };
+    
+    AddDataPointSeries(plotModel, inputData, lineSeries);
+    
+}
+
+private static void AddDataPointSeries<T>(PlotModel plotModel, T[] inputData, DataPointSeries data{pomtSeries)
+{
+    for (int i = 0; i < inputData.Length; i++)
+    {
+        dataPointSeries.Points.Add(new DataPoint(new DataPoint(i, Convert.ToDouble(inputData[i])));
+    }
+    
+    plotModel.Series.Clear();
+    plotModel.Series.Add(dataPointSeries);
+    
+    plotModel.InvalidatePlot(true);
+    
+}
