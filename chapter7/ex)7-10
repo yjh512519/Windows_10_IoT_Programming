@@ -1,0 +1,56 @@
+using SenseHatDisplay.Helpers;
+using SenseHatIO.SenseHatLedArray;
+using Speech;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Windows.Media.SpeechRecognition;
+using Windows.UI;
+using Windows.UI.Xaml.Controls;
+
+namespace SpeechControl
+{
+    public sealed partial class MainPage : Page
+    {
+        private const string welcomeMessage = "I'm ready. Choose a color";
+        
+        private async void InitializeSpeechRecognizer()
+        {
+            try
+            {
+                speechRecognizer = new SpeechRecognizer();
+
+                // 제약 조건 구성
+                var listConstraint = new SpeechRecognitionListConstraint(commandsDictionary.Keys);
+                speechRecognizer.Constraints.Add(listConstraint);
+                await speechRecognizer.CompileConstraintsAsync();
+
+                // 이벤트 핸들러 연결 및 연속 인식 시작
+                speechRecognizer.ContinuousRecognitionSession.ResultGenerated +=
+                    ContinuousRecognitionSession_ResultGenerated;
+                
+                await speechRecognizer.ContinuousRecognitionSession.StartAsync();
+
+                SpeechHelper.Speak(welcomeMessage);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                StartBlinking();
+            }
+        }
+        
+        private void StartBlinking()
+        {
+            const int msDelay = 100;
+
+            while (true)
+            {
+                ledArray.Reset(Colors.Black);
+                Task.Delay(msDelay).Wait();
+
+                ledArray.Reset(Colors.Red);
+                Task.Delay(msDelay).Wait();
+            }
+        }
+    }
+}
