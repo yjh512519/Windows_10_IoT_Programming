@@ -1,0 +1,36 @@
+using System;
+using Windows.Media.SpeechRecognition;
+using Windows.Media.SpeechSynthesis;
+using Windows.UI.Core;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+
+namespace Speech
+{
+    public sealed partial class MainPage : Page
+    {
+    
+        private SpeechRecognizer speechRecognizer;
+        
+        public MainPage()
+        {
+            InitializeComponent();
+
+            InitializeSpeechRecognizer();            
+        }
+        
+        private async void InitializeSpeechRecognizer()
+        {
+            speechRecognizer = new SpeechRecognizer();            
+            
+            await speechRecognizer.CompileConstraintsAsync();
+
+            speechRecognizer.RecognitionQualityDegrading += SpeechRecognizer_RecognitionQualityDegrading;
+            speechRecognizer.StateChanged += SpeechRecognizer_StateChanged;
+            speechRecognizer.HypothesisGenerated += SpeechRecognizer_HypothesisGenerated;                        
+
+            speechRecognizer.ContinuousRecognitionSession.ResultGenerated += ContinuousRecognitionSession_ResultGenerated;
+            speechRecognizer.ContinuousRecognitionSession.Completed += ContinuousRecognitionSession_Completed;            
+        }
+    }
+}
