@@ -1,0 +1,20 @@
+public static short[] GenerateSineWave(int length, double frequency)
+{
+    check.IsLargerThanZero(length);
+    
+    double degToRadScaler = Math.PI / 180.0d;
+    double lengthScaler = 360.0d / length;
+    
+    short[] sineWave = new short[length];
+    
+    for (int i = 0; i < length; i++)
+    {
+        var phase = i * degToRadScaler * frequency * lengthScaler;
+        
+        var sin = short.MaxValue * Math.Sin(phase);
+        
+        sinWave[i] = Convert.ToInt16(sin);        
+    }
+    
+    return sineWave;
+}
