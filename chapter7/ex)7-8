@@ -1,0 +1,24 @@
+        private async void InitializeSpeechRecognizer()
+        {
+            speechRecognizer = new SpeechRecognizer();            
+            
+            await speechRecognizer.CompileConstraintsAsync();
+
+            speechRecognizer.RecognitionQualityDegrading += SpeechRecognizer_RecognitionQualityDegrading;
+            speechRecognizer.StateChanged += SpeechRecognizer_StateChanged;
+            speechRecognizer.HypothesisGenerated += SpeechRecognizer_HypothesisGenerated;                        
+
+            speechRecognizer.ContinuousRecognitionSession.ResultGenerated += ContinuousRecognitionSession_ResultGenerated;
+            speechRecognizer.ContinuousRecognitionSession.Completed += ContinuousRecognitionSession_Completed;            
+        }
+        
+        private void ContinuousRecognitionSession_ResultGenerated(SpeechContinuousRecognitionSession sender,
+            SpeechContinuousRecognitionResultGeneratedEventArgs args)
+        {
+            DisplayInfo(GetRecognitionResultInfo(args.Result));            
+        }
+
+        private void ContinuousRecognitionSession_Completed(SpeechContinuousRecognitionSession sender, SpeechContinuousRecognitionCompletedEventArgs args)
+        {
+            DisplayInfo("Speech recognition completed. Status: " + args.Status);
+        }
