@@ -1,0 +1,27 @@
+using SenseHatDisplay.Helpers;
+using SenseHatIO.SenseHatLedArray;
+using Speech;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Windows.Media.SpeechRecognition;
+using Windows.UI;
+using Windows.UI.Xaml.Controls;
+
+namespace SpeechControl
+{
+    public sealed partial class MainPage : Page
+    {
+        private Dictionary<string, Color> commandsDictionary;
+        
+        private void InitializeCommandsDictionary()
+        {
+            commandsDictionary = new Dictionary<string, Color>();
+
+            commandsDictionary.Add("Red", Colors.Red);
+            commandsDictionary.Add("Green", Colors.Green);
+            commandsDictionary.Add("Blue", Colors.Blue);
+            commandsDictionary.Add("None", Colors.Black);
+        }
+    }
+}
