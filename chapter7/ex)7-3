@@ -1,0 +1,6 @@
+protected override void OnNaviatedTo(NavigationEventArs e)
+{
+    base.OnNavigatedTo(e);
+    
+    SpeechHelper.Speak("Internet of Thins");
+}
