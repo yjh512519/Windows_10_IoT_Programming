@@ -1,0 +1,25 @@
+        private async void ButtonOneTimeRecognition_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var recognitionResult = await speechRecognizer.RecognizeAsync();
+
+                DisplayInfo(GetRecognitionResultInfo(recognitionResult));
+            }
+            catch (UnauthorizedAccessException)
+            {
+                DisplayInfo("Speech recognition requires an access to a microphone");
+            }
+            catch (Exception)
+            {
+                DisplayInfo("Speech recognition is disabled");
+            }
+        }
+        
+        private string GetRecognitionResultInfo(SpeechRecognitionResult speechRecognitionResult)
+        {
+            return string.Format("Recognition result. Status: {0}. Confidence: {1}. Text: {2}",
+                speechRecognitionResult.Status,
+                speechRecognitionResult.Confidence,
+                speechRecognitionResult.Text);
+        }
