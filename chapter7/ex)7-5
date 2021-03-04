@@ -1,0 +1,19 @@
+        private void SpeechRecognizer_RecognitionQualityDegrading(SpeechRecognizer sender, SpeechRecognitionQualityDegradingEventArgs args)
+        {
+            DisplayInfo("Quality degrading: " + args.Problem);
+        }
+        
+        private async void DisplayInfo(string infoMessage)
+        {
+            if(Dispatcher.HasThreadAccess)
+            {
+                ListBoxResults.Items.Add(infoMessage);
+                ListBoxResults.SelectedIndex = ListBoxResults.Items.Count - 1;                
+            }
+            else
+            {
+                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
+                    DisplayInfo(infoMessage);
+                });
+            }
+        }        
