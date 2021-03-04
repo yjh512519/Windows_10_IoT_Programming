@@ -1,0 +1,27 @@
+using System;
+using Windows.Media.SpeechRecognition;
+using Windows.Media.SpeechSynthesis;
+using Windows.UI.Core;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+
+namespace Speech
+{
+    public sealed partial class MainPage : Page
+    {
+        private string textToSpeak;
+        
+        private object allVoices = SpeechSynthesizer.AllVoices;
+        private object voice;
+        
+         public MainPage()
+        {
+            this.InitializeComponent();
+        }
+        
+        private void ButtonSpeak_Click(object sender, RoutedEventArgs e)
+        {
+            SpeechHelper.Speak(textToSpeak, voice as VoiceInformation);
+        }
+    }
+}
