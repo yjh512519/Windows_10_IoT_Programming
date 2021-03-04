@@ -1,0 +1,33 @@
+//MainPae
+
+        private const string startCaption = "Start";
+        private const string stopCaption = "Stop";
+        
+        private async void ButtonContinousRecognition_Click(object sender, RoutedEventArgs e)
+        {
+            var buttonCaption = ButtonContinousRecognition.Content.ToString();
+
+            if (buttonCaption.Contains(startCaption))
+            {
+                try
+                {
+                    await speechRecognizer.ContinuousRecognitionSession.StartAsync();
+
+                    ButtonContinousRecognition.Content = buttonCaption.Replace(startCaption, stopCaption);
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    DisplayInfo("Speech recognition requires an access to a microphone");
+                }
+                catch (Exception)
+                {
+                    DisplayInfo("Speech recognition is disabled");
+                }
+            }
+            else
+            {
+                await speechRecognizer.ContinuousRecognitionSession.StopAsync();
+
+                ButtonContinousRecognition.Content = buttonCaption.Replace(stopCaption, startCaption);
+            }
+        }
