@@ -1,0 +1,17 @@
+private async Task ReadTestMessage()
+{
+    if (dataReader != null)
+    {
+        var stringLength =dataWriter.MeasureString(testMessage);
+        
+        await dataReader.LoadAsync(stringLength);
+        
+        var messageReceived = dataReader.ReadString(dataReader.UnconsumedBufferLength);
+        
+        DiagnosticInfo.Display(diagnosticData, "Message received: " + messageReceived);
+    }
+    else
+    {
+        DiagnosticInfo.Display(diagnosticData, "Data reader has been not initialized");
+    }
+}
