@@ -1,0 +1,17 @@
+private const string testMessage = "UART transfer";
+
+private async Task WriteTestMessage()
+{
+    if (dataWriter != null)
+    {
+        dataWriter.WriteString(testMessage);
+        
+        var bytesWritten = await dataWriter.StoreAsync();
+        
+        DiagnosticInfo.Display(diagnosticData, "Test message written successfully. Bytes written: " + byteWritten);
+    }
+    else
+    {
+        DiagnosticInfo.Display(diagnosticData, "Data writer has been not initialized");
+    }
+}
