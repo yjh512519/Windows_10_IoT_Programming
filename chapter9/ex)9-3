@@ -1,0 +1,15 @@
+public static async Task<SerialDevice> GetFirstDeviceAvailable()
+{
+    var serialDeviceCollection = await FindSerialDevices();
+    
+    var serialDeviceInformation = serialDeviceCollection.FirstOrDefault();
+    
+    if (serialDeviceInformation != null)
+    {
+        return await SerialDevice.FromIdAsync(serialDeviceInformation.Id);
+    }
+    else
+    {
+        return null;
+    }
+}
