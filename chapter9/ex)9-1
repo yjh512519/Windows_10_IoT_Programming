@@ -1,0 +1,6 @@
+public static async Task<DeviceInformationCollection> FindSerialDevices()
+{
+    var defaultSelector = SerialDevice.GetDeviceSelector();
+    
+    return await DeviceInformation.FindAllAsync(defaultSelector);
+}
