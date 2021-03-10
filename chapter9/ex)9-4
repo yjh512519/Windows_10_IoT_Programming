@@ -1,0 +1,16 @@
+private const int msDefaultTimeOut = 1000;
+
+public static void SetDefaultConfiguration(SerialDevice serialDevice)
+{
+    if (serialDevice != null)
+    {
+        serialDevice.WriteTimeout = TimeSpan.FromMilliseconds(msDefaultTimeOut);
+        serialDevice.ReadTimeout = TimeSpan.FromMilliseconds(msDefaultTimeOut);
+        
+        serialDevice.BaudRate = 115200;
+        serialDevice.Parity = SerialParity.None;
+        serialDevice.DataBits = 8;
+        serialDevice.Handshake = SerialHandshake.None;
+        serialDevice.StopBits = SerialStopBitcount.One;
+    }
+}
