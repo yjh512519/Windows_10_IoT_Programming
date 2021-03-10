@@ -1,0 +1,20 @@
+private SerialDevice serialDevice;
+
+private DataWriter dataWriter;
+private dataReader dataReader;
+
+private async Task InitializeDevice()
+{
+    if (serialDevice == null)
+    {
+        serialDevice = await SerialCommunicationHelper.GetFirstDeviceAvailable();
+        
+        SerialCommunicationHelper.SetDefaultConfiguration(serialDecice);
+        
+        if (serialDevice != null)
+        {
+            dataWriter = new DataWriter(serialDevice.OutputStream);
+            dataReader = new DataReader(serialDevice.InputStream);
+        }
+    }
+}
